@@ -7,12 +7,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a29f8a2-5d7e-4be4-9915-a386b4a571a1" name="Changes" comment="第二个项目">
-      <change afterPath="$PROJECT_DIR$/src/arithmetic_operations.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Rust-HelloWorld/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Rust-HelloWorld/target/.rustc_info.json" afterDir="false" />
-    </list>
+    <list default="true" id="9a29f8a2-5d7e-4be4-9915-a386b4a571a1" name="Changes" comment="添加四则运算" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +98,7 @@
       <updated>1713977815488</updated>
       <workItem from="1713977816931" duration="77000" />
       <workItem from="1714050624314" duration="94000" />
-      <workItem from="1714050755024" duration="7002000" />
+      <workItem from="1714050755024" duration="7479000" />
     </task>
     <task id="LOCAL-00001" summary="第二个项目">
       <option name="closed" value="true" />
@@ -113,7 +108,31 @@
       <option name="project" value="LOCAL" />
       <updated>1713977844731</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="添加四则运算">
+      <option name="closed" value="true" />
+      <created>1714062626693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714062626693</updated>
+    </task>
+    <task id="LOCAL-00003" summary="添加四则运算">
+      <option name="closed" value="true" />
+      <created>1714062661018</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714062661018</updated>
+    </task>
+    <task id="LOCAL-00004" summary="添加四则运算">
+      <option name="closed" value="true" />
+      <created>1714063050088</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714063050088</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +140,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="第二个项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="第二个项目" />
+    <MESSAGE value="添加四则运算" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加四则运算" />
   </component>
 </project>
