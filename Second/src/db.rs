@@ -1,47 +1,36 @@
-// db.rs
+use mysql::{Pool, PooledConn};
+use mysql::prelude::*;
+use std::env;
+use dotenv::dotenv;
 
-use rusqlite::{Connection, Result};
-
-// 初始化数据库，创建用户表
-pub fn init_db() -> Result<()> {
-    let conn = Connection::open("users.db")?;
-
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY,
-            username TEXT NOT NULL UNIQUE,
-            email TEXT NOT NULL UNIQUE,
-            password TEXT NOT NULL
-        )",
-        [],
-    )?;
-
-    Ok(())
+pub struct DbPool {
+    pub pool: Pool,
 }
 
-// 用户注册
-pub fn register_user(username: &str, email: &str, password: &str) -> Result<()> {
-    let conn = Connection::open("users.db")?;
+pub fn init_db() -> Result<DbPool, mysql::Error> {
+    dotenv().ok();
 
-    // 检查用户名是否已存在
-    let mut stmt = conn.prepare("SELECT COUNT(*) FROM users WHERE username = ?1")?;
-    let count: i64 = stmt.query_row([username], |row| row.get(0))?;
-    if count > 0 {
-        return Err(rusqlite::Error::QueryReturnedNoRows); // 用户名已存在
-    }
+    // 从环境变量中获取数据库连接信息
+    let db_host = env::var("DB_HOST").expect("DB_HOST must be set");
+    let db_port = env::var("DB_PORT").expect("DB_PORT must be set");
+    let db_user = env::var("DB_USER").expect("DB_USER must be set");
+    let db_password = env::var("DB_PASSWORD").expect("DB_PASSWORD must be set");
+    let db_name = env::var("DB_NAME").expect("DB_NAME must be set");
 
-    // 检查邮箱是否已存在
-    let mut stmt = conn.prepare("SELECT COUNT(*) FROM users WHERE email = ?1")?;
-    let count: i64 = stmt.query_row([email], |row| row.get(0))?;
-    if count > 0 {
-        return Err(rusqlite::Error::QueryReturnedNoRows); // 邮箱已存在
-    }
+    // 创建数据库连接池
+    let db_url = format!("mysql://{}:{}@{}:{}/{}", db_user, db_password, db_host, db_port, db_name);
+    let pool = Pool::new(&db_url)?;
 
-    // 插入新用户信息
-    conn.execute(
-        "INSERT INTO users (username, email, password) VALUES (?1, ?2, ?3)",
-        &[username, email, password],
+    // 确保 `users` 表存在
+    let mut conn = pool.get_conn()?;
+    conn.query_drop(
+        r"CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            email VARCHAR(100) NOT NULL UNIQUE,
+            password VARCHAR(100) NOT NULL
+        )"
     )?;
 
-    Ok(())
+    Ok(DbPool { pool })
 }
